@@ -12,7 +12,22 @@ const AddTutorials = () => {
     const handleAddTutorial = (e) => {
         e.preventDefault()
         const form = new FormData(e.target)
-        const tutorialData = Object.fromEntries(form.entries());
+        const initialData = Object.fromEntries(form.entries());
+
+        // const tutorialData = { ...initialData, review: 0, }
+        const selectedLanguages = Array.from(
+            e.target.languageProficiency
+        )
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
+
+        const tutorialData = {
+            ...initialData,
+            languageProficiency: selectedLanguages,
+            review: 0, status: 'Available'
+        };
+
+
         console.log(tutorialData);
         axios.post('http://localhost:5000/tutorials', tutorialData)
             .then((res) => {
@@ -34,7 +49,11 @@ const AddTutorials = () => {
     return (
         <div>
             <div className="h-[250px] rounded-bl-[60px] rounded-br-[60px] w-11/12 mx-auto bg-[#540654] relative">
-                <h1 className='text-3xl lg:text-4xl font-bold text-center text-white pt-12'>Add New Tutorial</h1>
+                <motion.h1
+                    initial={{ x: '-100vh', opacity: 0 }}
+                    animate={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 2, ease: 'easeInOut' }}
+                    className='text-3xl lg:text-4xl font-bold text-center text-white pt-12'>Add New Tutorial</motion.h1>
             </div>
             <motion.div
                 initial={{ y: '-100vh', opacity: 0 }}
@@ -67,10 +86,11 @@ const AddTutorials = () => {
                         />
                     </div>
 
-                    
+
                     <div>
                         <label className="block text-sm font-medium mb-2">Tutorial's Image URL</label>
                         <input
+                            defaultValue={user?.photoURL}
                             type="text"
                             name="photo"
                             placeholder='Enter Tutorial Image URL'
@@ -99,8 +119,37 @@ const AddTutorials = () => {
                             <option>Arabic</option>
                         </select>
                     </div>
-
                     <div>
+                        <label className="block text-sm font-medium mb-2">Experience</label>
+                        <input
+                            type="number"
+                            name="experience"
+                            placeholder='Enter Your Tuitoring Experience in Years'
+                            className="w-full border rounded-lg p-2"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Days/Week</label>
+                        <input
+                            type="number"
+                            name="days"
+                            placeholder='How many days per week You are available for tuition?'
+                            className="w-full border rounded-lg p-2"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Country</label>
+                        <input
+                            type="text"
+                            name="country"
+                            placeholder='Enter Your Country Name'
+                            className="w-full border rounded-lg p-2"
+                            required
+                        />
+                    </div>
+                    <div className=''>
                         <label className="block text-sm font-medium mb-2">Description</label>
                         <textarea
                             name="description"
@@ -108,6 +157,15 @@ const AddTutorials = () => {
                             className="w-full border rounded-lg p-2"
                             required
                         />
+                    </div>
+                    <div className=''>
+                        <label className='block text-sm font-medium mb-2'>Gender</label>
+                        <select defaultValue='Select Gender' name='gender' required className="select select-bordered w-full ">
+                            <option disabled >Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+
+                        </select>
                     </div>
                     <div>
                         <label className="block text-sm font-medium mb-2">Salary</label>
@@ -119,6 +177,77 @@ const AddTutorials = () => {
                             required
                         />
                     </div>
+
+
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Language Proficiency</label>
+                        <div className="grid grid-cols-2 gap-4 p-2 bg-white rounded-lg">
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="english"
+                                    name="languageProficiency"
+                                    value="English"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="english" className="ml-2">English</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="german"
+                                    name="languageProficiency"
+                                    value="German"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="german" className="ml-2">German</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="french"
+                                    name="languageProficiency"
+                                    value="French"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="french" className="ml-2">French</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="japanese"
+                                    name="languageProficiency"
+                                    value="Japanese"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="japanese" className="ml-2">Japanese</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="chinese"
+                                    name="languageProficiency"
+                                    value="Chinese"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="chinese" className="ml-2">Chinese</label>
+                            </div>
+                            <div className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id="spanish"
+                                    name="languageProficiency"
+                                    value="Spanish"
+                                    className="checkbox checkbox-primary"
+                                />
+                                <label htmlFor="spanish" className="ml-2">Spanish</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
 
 
 
