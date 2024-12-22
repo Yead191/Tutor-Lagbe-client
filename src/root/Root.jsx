@@ -6,13 +6,13 @@ import { Outlet } from 'react-router-dom';
 const Root = () => {
     return (
         <div className='flex flex-col min-h-screen'>
-            <nav>
+            <nav className='h-[68px]'>
                 <Navbar></Navbar>
             </nav>
-            <body className='flex-grow'>
+            <div className='flex-grow'>
                 <Outlet></Outlet>
 
-            </body>
+            </div>
             <footer>
                 <Footer></Footer>
             </footer>

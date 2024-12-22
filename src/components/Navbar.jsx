@@ -3,30 +3,31 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import userImg from '../assets/user.png'
 // import logo from '../assets/logo2.png'
 import { PiSignIn, PiSignOut } from "react-icons/pi";
+import useAuth from '../hooks/UseAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
-    const user = {
-        displayName: 'Yead',
-        photoURL : {userImg}
-    }
+    const { user, logOut } = useAuth()
+    // console.log(user);
+
     const navigate = useNavigate()
-    // const { user, logOut } = useContext(AuthContext)
-    // const handleSignOut = () => {
-    //     document.getElementById("my-drawer-2").checked = false
-    //     logOut()
-    //         .then(() => {
-    //             toast.success('Sign out Successful');
-    //             navigate('/login')
-    //         }).catch((error) => {
-    //             toast.error(error.message);
-    //         });
-    // }
+
+    const handleSignOut = () => {
+        document.getElementById("my-drawer-2").checked = false
+        logOut()
+            .then(() => {
+                toast.success('Sign out Successful');
+                navigate('/login')
+            }).catch((error) => {
+                toast.error(error.message);
+            });
+    }
 
 
     const links = <div className='lg:flex lg:gap-3 '>
         <li><NavLink to='/' >Home</NavLink></li>
-        <li><NavLink >All Products</NavLink></li>
-        <li><NavLink >Add Product</NavLink></li>
+        <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
+        <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
 
 
     </div >
@@ -42,7 +43,7 @@ const Navbar = () => {
     return (
         <div style={{
             background: "linear-gradient(90deg, #540654, #cc0d85 50%, #540654 100%, #00d4ff 0)"
-          }} className="navbar bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#00d4ff] shadow-md fixed top-0 z-50 lg:px-20 ">
+        }} className="navbar bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#00d4ff] shadow-md fixed top-0 z-50 lg:px-20 ">
 
 
             <div className='navbar-start'>
@@ -155,7 +156,7 @@ const Navbar = () => {
                 </div>
 
                 <Link to={'/'} className='text-white text-2xl lg:text-3xl font-semibold' >
-                TutorLagbe?
+                    TutorLagbe?
                 </Link>
             </div>
 
@@ -218,7 +219,7 @@ const Navbar = () => {
                         {
 
                             user && user?.email ?
-                                <button className=" btn bg-base-100 btn-sm md:hidden"> Sign Out <PiSignOut className='text-lg' /></button>
+                                <button onClick={handleSignOut} className=" btn bg-base-100 btn-sm md:hidden"> Sign Out <PiSignOut className='text-lg' /></button>
                                 :
                                 <Link to='/login' className="btn btn-sm bg-base-100 md:hidden"><PiSignIn className='text-lg' /> Login</Link>
                         }
