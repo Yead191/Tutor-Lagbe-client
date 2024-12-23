@@ -8,6 +8,7 @@ const AddTutorials = () => {
     const { user } = useAuth()
 
 
+    const createdAt = user?.metadata?.creationTime
 
     const handleAddTutorial = (e) => {
         e.preventDefault()
@@ -24,7 +25,7 @@ const AddTutorials = () => {
         const tutorialData = {
             ...initialData,
             languageProficiency: selectedLanguages,
-            review: 0, status: 'Available'
+            review: 0, status: 'Available', createdAt
         };
 
 
@@ -177,8 +178,18 @@ const AddTutorials = () => {
                             required
                         />
                     </div>
+                    <div>
+                        <label className="block text-sm font-medium mb-2">Qualification</label>
+                        <input
+                            type="text"
+                            name="qualification"
+                            placeholder='Enter Your Qualification'
+                            className="w-full border rounded-lg p-2"
+                            required
+                        />
+                    </div>
 
-
+                    {/* language proficiency */}
                     <div>
                         <label className="block text-sm font-medium mb-2">Language Proficiency</label>
                         <div className="grid grid-cols-2 gap-4 p-2 bg-white rounded-lg">

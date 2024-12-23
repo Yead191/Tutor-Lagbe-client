@@ -19,7 +19,7 @@ const Register = () => {
     const location = useLocation()
 
 
-    const from = location.state || '/'
+    // const from = location.state || '/'
     // console.log(location);
 
 
@@ -54,15 +54,19 @@ const Register = () => {
             .then(res => {
                 console.log(res.user);
                 setUser(res.user)
-                const createdAt = result?.user?.metadata?.creationTime
+                // const createdAt = result?.user?.metadata?.creationTime
                 updateUser({
                     displayName: name,
                     photoURL: photo,
                 })
+                    .then(() => {
+                        navigate(location?.state ? location.state : '/')
+                        toast.success(`Successfully Registered as: ${res.user.displayName}`)
+                        setLoading(false)
 
-                toast.success(`User Registered Successfully!`)
-                setLoading(false)
-                navigate(from)
+                    })
+
+
             })
             .catch((error) => {
                 const errorMessage = error.message;

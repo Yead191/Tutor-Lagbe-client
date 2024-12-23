@@ -50,7 +50,10 @@ const TutorDetails = () => {
             price,
             languageProficiency,
             review,
-            status } = tutor
+            status,
+            qualification,
+            createdAt,
+        } = tutor
     // console.log(tutor.review);
     const isDisabled = email === user?.email
 
@@ -149,14 +152,14 @@ const TutorDetails = () => {
                             <p>Country: <strong>{country}</strong> </p>
                             <p>ID#: <strong>{_id}</strong> </p>
                             <p>Gender: <strong>{gender}</strong> </p>
-                            <p>Qualification: <strong> -</strong></p>
-                            <p>Area Covered: <strong>-</strong></p>
+                            <p>Qualification: <strong> {qualification}</strong></p>
+
                         </div>
                     </div>
                     {/* Member Since Section */}
                     <div className="mt-4">
                         <p className="bg-green-500 text-white text-center py-2 rounded-b-lg">
-                            Member Since:
+                            Member Since: {new Date(createdAt).toLocaleDateString()}
                         </p>
                     </div>
                 </div>

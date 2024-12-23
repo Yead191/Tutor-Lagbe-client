@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../hooks/UseAuth';
+import { FaStar } from 'react-icons/fa';
 
 
 const TutorCard = ({ tutor }) => {
@@ -42,6 +43,10 @@ const TutorCard = ({ tutor }) => {
                 {/* Name and Badge */}
                 <div className="flex items-center space-x-2">
                     <h3 className="text-lg font-semibold ">{tutor.name}</h3>
+                    <div className="flex items-center text-yellow-500 text-sm">
+                        <FaStar className="mr-1" />
+                        <p>{tutor.review && tutor.review}</p>
+                    </div>
                     {
                         isBooked && <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
                             Booked
