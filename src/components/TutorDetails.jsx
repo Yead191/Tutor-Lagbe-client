@@ -13,7 +13,10 @@ const TutorDetails = () => {
     const [isBooked, setIsBooked] = useState(false)
     const navigate = useNavigate()
 
-    console.log(isBooked);
+
+
+    // console.log(isBooked);
+
     useEffect(() => {
         axios.get('http://localhost:5000/bookedTutors')
             .then(res => {
@@ -64,7 +67,7 @@ const TutorDetails = () => {
         console.log(bookedTutor);
         axios.post('http://localhost:5000/bookedTutors', bookedTutor)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 if (res.status === 200) {
 
                     Swal.fire({
@@ -79,6 +82,38 @@ const TutorDetails = () => {
             })
     }
 
+    const handleReview = (id) => {
+        const reviewData = {
+            tutorId: id, reviewedBy: user.email, reviewedAt: new Date()
+        }
+        axios.post('http://localhost:5000/reviews', reviewData)
+            .then(res => {
+                console.log(res.status)
+                if (res.status === 200) {
+
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Thanks For the Review!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(`/tutor/${id}`)
+                }
+
+
+            })
+            .catch((error) => {
+                console.error("Error posting review:", error);
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Unable to submit the review. You can review a tutor only Once.",
+                    showConfirmButton: true,
+                });
+            });
+
+    }
     return (
         <div className=''>
             <div className="h-[250px] md:rounded-bl-[60px] md:rounded-br-[60px] md:w-11/12 mx-auto bg-[#540654] relative">
@@ -172,7 +207,7 @@ const TutorDetails = () => {
                     </table>
                     {
                         isBooked ?
-                            <button className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-[#00d4ff] '}  `} >Review This Tutor</button>
+                            <button onClick={() => handleReview(_id)} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-[#00d4ff] '}  `} >Review This Tutor</button>
                             :
                             <button onClick={() => handleBookTutor(_id)} disabled={isDisabled} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-gradient-to-r  from-[#540654] via-[#cc0d85] to-[#00d4ff]'}  text-white`} >Book This Tutor</button>
                     }

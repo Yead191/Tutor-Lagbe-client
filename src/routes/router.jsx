@@ -9,6 +9,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import TutorDetails from "../components/TutorDetails";
 import MyBookedTutor from "../pages/MyBookedTutor";
+import PrivateRoute from "./PrivateRote";
 
 
   const router = createBrowserRouter([
@@ -27,7 +28,7 @@ import MyBookedTutor from "../pages/MyBookedTutor";
         },
         {
             path: '/add-tutorials',
-            element: <AddTutorials></AddTutorials>
+            element: <PrivateRoute><AddTutorials></AddTutorials></PrivateRoute>
         },
         {
             path: '/login',
@@ -39,12 +40,12 @@ import MyBookedTutor from "../pages/MyBookedTutor";
         },
         {
           path: '/tutor/:details',
-          element: <TutorDetails></TutorDetails>,
+          element: <PrivateRoute><TutorDetails></TutorDetails></PrivateRoute>,
           loader: ({params})=> fetch(`http://localhost:5000/tutor/${params.details}`)
         },
         {
           path: '/my-booked-tutor',
-          element: <MyBookedTutor></MyBookedTutor>
+          element: <PrivateRoute><MyBookedTutor></MyBookedTutor></PrivateRoute>
         }
       ]
     },

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from "motion/react"
-import { Link, useNavigate, } from 'react-router-dom';
+import { Link, useLocation, useNavigate, } from 'react-router-dom';
 // import { AuthContext } from '../provider/AuthProvider';
 // import { FcGoogle } from 'react-icons/fc';
 import toast from 'react-hot-toast';
@@ -12,10 +12,16 @@ import SocialLogin from '../components/SocialLogin';
 
 
 const Register = () => {
-    const { createUser, updateUser, setUser, } = useAuth()
+    const { createUser, updateUser, setUser, setLoading } = useAuth()
     const [showPass, setShowPass] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
     const navigate = useNavigate()
+    const location = useLocation()
+
+
+    const from = location.state || '/'
+    // console.log(location);
+
 
     const handleRegister = e => {
         e.preventDefault()
@@ -48,12 +54,15 @@ const Register = () => {
             .then(res => {
                 console.log(res.user);
                 setUser(res.user)
+                const createdAt = result?.user?.metadata?.creationTime
                 updateUser({
                     displayName: name,
-                    photoURL: photo
+                    photoURL: photo,
                 })
+
                 toast.success(`User Registered Successfully!`)
-                navigate('/')
+                setLoading(false)
+                navigate(from)
             })
             .catch((error) => {
                 const errorMessage = error.message;
