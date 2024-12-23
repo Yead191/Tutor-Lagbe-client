@@ -7,6 +7,8 @@ import FindTutors from "../pages/FindTutors";
 import AddTutorials from "../pages/AddTutorials";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import TutorDetails from "../components/TutorDetails";
+import MyBookedTutor from "../pages/MyBookedTutor";
 
 
   const router = createBrowserRouter([
@@ -34,6 +36,15 @@ import Register from "../pages/Register";
         {
             path: '/register',
             element: <Register></Register>
+        },
+        {
+          path: '/tutor/:details',
+          element: <TutorDetails></TutorDetails>,
+          loader: ({params})=> fetch(`http://localhost:5000/tutor/${params.details}`)
+        },
+        {
+          path: '/my-booked-tutor',
+          element: <MyBookedTutor></MyBookedTutor>
         }
       ]
     },

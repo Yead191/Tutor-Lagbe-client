@@ -27,6 +27,7 @@ const Navbar = () => {
     const links = <div className='lg:flex lg:gap-3 '>
         <li><NavLink to='/' >Home</NavLink></li>
         <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
+        <li><NavLink to={`/my-booked-tutor`}>My Booked Tutor</NavLink></li>
         <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
 
 
@@ -171,7 +172,7 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-end gap-3 ">
-                <button className="btn shadow-none" onClick={toggleTheme}>
+                <button className="btn btn-sm rounded-full shadow-none" onClick={toggleTheme}>
                     {theme === "light" ?
                         <svg
                             className="swap-off h-5 w-5 md:h-6 md:w-6 fill-current"
@@ -213,7 +214,8 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li className='pl-3 pt-1 font-semibold text-lg'>{user?.displayName}</li>
+                        <li className='pl-3 pt-1 font-semibold text-lg border-b'>{user?.displayName}</li>
+                        <li className='pl-3 pt-1 text-sm text-[#cc0d85]'>{user?.email}</li>
 
 
                         {

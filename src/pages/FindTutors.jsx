@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useLoaderData } from 'react-router-dom';
 import bgImage from '../assets/bg-find.png';
 
@@ -6,6 +6,7 @@ import TutorCard from '../components/TuitorCard';
 
 const FindTutors = () => {
     const tutorials = useLoaderData()
+   
 
     return (
 
