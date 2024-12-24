@@ -27,8 +27,9 @@ const Navbar = () => {
     const links = <div className='lg:flex lg:gap-3 '>
         <li><NavLink to='/' >Home</NavLink></li>
         <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
-        <li><NavLink to={`/my-booked-tutor`}>My Booked Tutor</NavLink></li>
         <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
+        <li><NavLink to={`/my-booked-tutor`}>My Booked Tutors</NavLink></li>
+        <li><NavLink to={`/my-tutorials`}>My Tutorials</NavLink></li>
 
 
     </div >

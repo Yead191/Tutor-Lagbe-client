@@ -28,7 +28,7 @@ const MyBookedTutor = () => {
                 className='w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row  bg-blue-100 shadow rounded-lg  py-8 px-3 md:p-16 my-16 relative -mt-32 gap-12'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-x-6 gap-y-14'>
                     {
-                        bookedTutor?.map(tutor => <div className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative">
+                        bookedTutor?.map(tutor => <div key={tutor._id} className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative">
                             {/* Profile Picture */}
                             <div className="flex-shrink-0 absolute -top-10 left-2">
                                 <img

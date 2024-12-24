@@ -20,10 +20,10 @@ const TutorDetails = () => {
     useEffect(() => {
         axios.get('http://localhost:5000/bookedTutors')
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
                 const data = res.data
                 for (const book of data) {
-                    console.log(book.email);
+                    // console.log(book.email);
                     if (book.email === user.email && _id === book.tutorId) {
                         setIsBooked(true)
                     }
@@ -67,7 +67,7 @@ const TutorDetails = () => {
             email: user?.email,
             price,
         }
-        console.log(bookedTutor);
+        // console.log(bookedTutor);
         axios.post('http://localhost:5000/bookedTutors', bookedTutor)
             .then(res => {
                 // console.log(res)
