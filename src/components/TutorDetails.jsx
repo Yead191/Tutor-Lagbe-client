@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import useAuth from '../hooks/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { RxCross1 } from 'react-icons/rx';
 
 
 const TutorDetails = () => {
@@ -117,6 +118,9 @@ const TutorDetails = () => {
             });
 
     }
+
+
+
     return (
         <div className=''>
             <div className="h-[250px] md:rounded-bl-[60px] md:rounded-br-[60px] md:w-11/12 mx-auto bg-[#540654] relative">
@@ -128,6 +132,12 @@ const TutorDetails = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1.5, ease: 'easeInOut' }}
                 className='w-11/12 md:w-10/12 mx-auto flex flex-col md:flex-row  bg-base-100 shadow rounded-lg  py-8 px-3 md:p-16 my-16 relative -mt-32 gap-12'>
+                <button
+                    className="p-2 bg-red-500 rounded-2xl text-white absolute -top-3 -left-3 z-10 transition hover:scale-110"
+                    onClick={() => window.history.back()}
+                >
+                    <RxCross1 className="text-sm" />
+                </button>
                 <div className='md:w-1/4  rounded-xl bg-base-200 shadow-md'>
                     <div className='p-3'>
                         <h1 className='text-center underline font-thin text-2xl my-6'>Profile</h1>
@@ -212,7 +222,7 @@ const TutorDetails = () => {
                         isBooked ?
                             <button onClick={() => handleReview(_id)} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-[#00d4ff] '}  `} >Review This Tutor</button>
                             :
-                            <button onClick={() => handleBookTutor(_id)} disabled={isDisabled} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-gradient-to-r  from-[#540654] via-[#cc0d85] to-[#00d4ff]'}  text-white`} >Book This Tutor</button>
+                            <button onClick={() => handleBookTutor(_id)} disabled={isDisabled} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200  cursor-auto' : 'bg-gradient-to-r  from-[#540654] via-[#cc0d85] to-[#00d4ff]'}  text-white`} >Book This Tutor</button>
                     }
 
 

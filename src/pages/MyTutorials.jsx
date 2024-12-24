@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/UseAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaEdit, FaFile, FaStar } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MyTutorials = () => {
+    const navigate = useNavigate()
     const { user } = useAuth()
     const [myTutorials, setMyTutorials] = useState([])
     useEffect(() => {
@@ -12,6 +14,39 @@ const MyTutorials = () => {
             .then(res => setMyTutorials(res.data))
     }, [])
     // console.log(myTutorials);
+
+    const handleDeleteTutorial = (id) => {
+        // console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/tutor/${id}`)
+                    .then(res => {
+                        // console.log(res.data);
+                        if (res.data.deletedCount > 0) {
+
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Tutorial has been deleted.",
+                                icon: "success"
+                            });
+                            const remaining = myTutorials.filter(tut=> tut._id != id)
+                            setMyTutorials(remaining)
+
+                        }
+                    })
+            }
+        });
+
+
+    }
 
     return (
         <div>
@@ -74,14 +109,14 @@ const MyTutorials = () => {
                                     <td>
                                         <div className="flex items-center text-yellow-500 text-sm">
                                             <FaStar className="mr-1" />
-                                            <p>{tutorial?.review }</p>
+                                            <p>{tutorial?.review}</p>
                                         </div>
                                     </td>
                                     <td>
                                         <div className="flex items-center gap-1">
                                             <Link to={`/tutor/${tutorial._id}`} className='btn btn-xs text-xs text-white bg-black'><FaFile /></Link>
                                             <Link to={`/update-tutorial/${tutorial._id}`} className='btn btn-xs text-xs'><FaEdit /></Link>
-                                            <button className='btn btn-xs text-xs btn-error text-white'>X</button>
+                                            <button onClick={() => handleDeleteTutorial(tutorial._id)} className='btn btn-xs text-xs btn-error text-white'>X</button>
                                         </div>
                                     </td>
                                 </tr>

@@ -3,10 +3,11 @@ import { motion } from 'framer-motion';
 import useAuth from '../hooks/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddTutorials = () => {
     const { user } = useAuth()
-
+    const navigate = useNavigate()
 
     const createdAt = user?.metadata?.creationTime
 
@@ -43,6 +44,7 @@ const AddTutorials = () => {
                         timer: 1500
                     });
                     e.target.reset()
+                    navigate('/my-tutorials')
                 }
             })
             .catch((err) => console.error("Error:", err));
