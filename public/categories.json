@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "language": "English", 
+        "icon": "🏤"
+    },
+    {
+        "id": 2,
+        "language": "Spanish",
+        "icon": "🏰"
+    },
+    {
+        "id": 3,
+        "language": "French",
+        "icon": "🗼"
+    },
+    {
+        "id": 4,
+        "language": "German",
+        "icon": "🏛️"
+    },
+    {
+        "id": 5,
+        "language": "Italian",
+        "icon": "🏯"
+    },
+    {
+        "id": 6,
+        "language": "Chinese",
+        "icon": "🏯"
+    },
+    {
+        "id": 7,
+        "language": "Arabic",
+        "icon": "🕌"
+    },
+    {
+        "id": 8,
+        "language": "Japanese",
+        "icon": "⛩️"
+    }
+]

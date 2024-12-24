@@ -8,6 +8,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const provider = new GoogleAuthProvider();
+    const [search, setSearch]= useState()
+    const [searchTerm, setSearchTerm] = useState('');
+
 
     const createUser = (email, password) => {
         setLoading(true)
@@ -59,6 +62,10 @@ const AuthProvider = ({ children }) => {
         loading,
         setLoading,
         signInWithGoogle,
+        setSearch,
+        search,
+        searchTerm, setSearchTerm
+
         
 
 

@@ -13,23 +13,47 @@ import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../pages/ErrorPage";
 import MyTutorials from "../pages/MyTutorials";
 import UpdateTutorial from "../components/UpdateTutorial";
+import Tutor from "../components/Tutor";
+import TutorsByCategories from "../components/TutorsByCategories";
+import ScrollToTop from "../components/ScrollToTop";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
+    element: (
+      <>
+        <ScrollToTop></ScrollToTop>
+        <Root></Root>
+      </>
+    ),
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home></Home>,
+        loader: () => fetch('http://localhost:5000/categories')
       },
       {
         path: '/find-tutors',
         element: <FindTutors></FindTutors>,
-        loader: () => fetch('http://localhost:5000/tutorials')
+        loader: () => fetch('http://localhost:5000/categories'),
+        children: [
+          {
+            index: true,
+            element: <Tutor></Tutor>,
+            loader: () => fetch('http://localhost:5000/tutorials'),
+          },
+          {
+            path: 'category/:category', // Use relative path here
+            element: <TutorsByCategories></TutorsByCategories>,
+            loader: ({ params }) =>
+              fetch(`http://localhost:5000/tutorials/${params.category}`),
+          },
+
+        ],
       },
+
       {
         path: '/add-tutorials',
         element: <PrivateRoute><AddTutorials></AddTutorials></PrivateRoute>
@@ -58,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: '/update-tutorial/:id',
         element: <PrivateRoute><UpdateTutorial></UpdateTutorial> </PrivateRoute>,
-        loader: ({params})=> fetch(`http://localhost:5000/tutor/${params.id}`)
+        loader: ({ params }) => fetch(`http://localhost:5000/tutor/${params.id}`)
       },
     ]
   },

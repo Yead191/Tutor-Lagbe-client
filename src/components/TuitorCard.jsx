@@ -28,7 +28,7 @@ const TutorCard = ({ tutor }) => {
     }, [user])
 
     return (
-        <div className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative">
+        <div className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative transition transform lg:hover:-translate-y-2 lg:duration-500 lg:ease-in-out ">
             {/* Profile Picture */}
             <div className="flex-shrink-0 absolute -top-10 left-2">
                 <img
