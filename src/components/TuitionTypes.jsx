@@ -44,7 +44,7 @@ const TuitionTypes = () => {
                             alt="Group Tutoring"
                             className="w-full h-[300px] mx-auto"
                         />
-                        <h3 className="text-lg font-medium text-gray-800 mt-4">Group Tutoring</h3>
+                        <h3 className="text-2xl font-semibold text-gray-800 mt-4">Group Tutoring</h3>
                         <p className="text-gray-400 text-xs my-2">Need the Competitive & Affordable experience?</p>
                         <p className="text-[#6c757d] text-[14px] mt-2 font-medium">
                             A group of students can full fill their hunger for learning within more affordable tuition fees. Get the opportunity of learning with knowledge sharing!

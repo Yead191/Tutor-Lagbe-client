@@ -92,7 +92,7 @@ const TutorDetails = () => {
         }
         axios.post('http://localhost:5000/reviews', reviewData)
             .then(res => {
-                console.log(res.status)
+                // console.log(res.status)
                 if (res.status === 200) {
 
                     Swal.fire({

@@ -4,13 +4,15 @@ import useAuth from '../hooks/UseAuth';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEdit, FaFile, FaStar } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { motion } from 'framer-motion';
+
 
 const MyTutorials = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
     const [myTutorials, setMyTutorials] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:5000/my-tutorials?email=${user.email}`)
+        axios.get(`http://localhost:5000/my-tutorials?email=${user.email}`, { withCredentials: true })
             .then(res => setMyTutorials(res.data))
     }, [])
     // console.log(myTutorials);
@@ -37,7 +39,7 @@ const MyTutorials = () => {
                                 text: "Your Tutorial has been deleted.",
                                 icon: "success"
                             });
-                            const remaining = myTutorials.filter(tut=> tut._id != id)
+                            const remaining = myTutorials.filter(tut => tut._id != id)
                             setMyTutorials(remaining)
 
                         }
@@ -54,7 +56,11 @@ const MyTutorials = () => {
                 <h1
                     className='text-3xl lg:text-4xl font-bold text-center text-white pt-12'>My Tutorials</h1>
             </div>
-            <div className='w-10/12 mx-auto flex flex-col md:flex-row  bg-base-100 shadow rounded-xl  py-8 px-3 md:p-16 my-16 relative -mt-32 gap-12 border border-[#540654]'>
+            <motion.div
+                initial={{ y: '-100vh', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1.5, ease: 'easeInOut' }}
+                className='w-10/12 mx-auto flex flex-col md:flex-row  bg-base-100 shadow rounded-xl  py-8 px-3 md:p-16 my-16 relative -mt-32 gap-12 border border-[#540654]'>
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -127,7 +133,7 @@ const MyTutorials = () => {
                 </table>
 
 
-            </div>
+            </motion.div>
 
         </div>
     );

@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/UseAuth';
 import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const SocialLogin = () => {
     const navigate = useNavigate()
@@ -12,13 +13,18 @@ const SocialLogin = () => {
     const from = location.state || '/'
     const handleLoginWithGoogle = () => {
         signInWithGoogle()
-        .then(result=>{
-            navigate(from)
-            toast.success(`Logged in as: ${result.user.displayName}`)
-        })
-        .catch(error=>{
-            toast.error(error.message);
-        })
+            .then(result => {
+                navigate(from)
+                const user = { email: result.user.email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data);
+                    })
+                toast.success(`Logged in as: ${result.user.displayName}`)
+            })
+            .catch(error => {
+                toast.error(error.message);
+            })
 
     }
     return (

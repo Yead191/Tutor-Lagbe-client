@@ -11,7 +11,7 @@ const MyBookedTutor = () => {
     const { user } = useAuth()
     const [bookedTutor, setBookedTutor] = useState()
     useEffect(() => {
-        axios.get(`http://localhost:5000/my-booked-tutors?email=${user?.email}`)
+        axios.get(`http://localhost:5000/my-booked-tutors?email=${user?.email}`, {withCredentials: true})
             .then(res => setBookedTutor(res.data))
     }, [])
     // const bookedTutor = useLoaderData()

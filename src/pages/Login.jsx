@@ -8,13 +8,14 @@ import Lottie from 'lottie-react';
 import loginLottie from '../assets/login.json'
 import useAuth from '../hooks/UseAuth';
 import SocialLogin from '../components/SocialLogin';
+import axios from 'axios';
 
 
 
 
 const Login = () => {
 
-    const {login} = useAuth()
+    const { login } = useAuth()
     const [showPass, setShowPass] = useState(false)
     const location = useLocation()
     // console.log(location, 'location');
@@ -31,13 +32,13 @@ const Login = () => {
                 // console.log(result.user);
                 form.reset()
                 toast.success(`Logged In as: ${result.user.displayName}`)
-                navigate(from)
-                const user = { email : result.user.email }
-                // axios.post('https://job-portal-server-gray.vercel.app/jwt', user, {withCredentials: true})
-                // .then(data=> {
-                //     // console.log(data.data);
-                //     navigate(from)
-                // })
+                // navigate(from)
+                const user = { email: result.user.email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data.data);
+                        navigate(from)
+                    })
             })
             .catch(error => {
                 toast.error(error.message)

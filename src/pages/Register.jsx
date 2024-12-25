@@ -9,6 +9,7 @@ import Lottie from 'lottie-react';
 import regAnimation from '../assets/register.json'
 import useAuth from '../hooks/UseAuth';
 import SocialLogin from '../components/SocialLogin';
+import axios from 'axios';
 
 
 const Register = () => {
@@ -55,6 +56,11 @@ const Register = () => {
                 console.log(res.user);
                 setUser(res.user)
                 // const createdAt = result?.user?.metadata?.creationTime
+                const user = { email: res.user.email }
+                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                    .then(data => {
+                        console.log(data);
+                    })
                 updateUser({
                     displayName: name,
                     photoURL: photo,
