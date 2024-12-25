@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import useAuth from '../hooks/UseAuth';
 import axios from 'axios';
@@ -6,6 +6,10 @@ import Swal from 'sweetalert2';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
 const UpdateTutorial = () => {
+    useEffect(() => {
+        document.title = 'Update | TutorLagbe?'
+    }, [])
+
     const { user } = useAuth()
     const navigate = useNavigate()
     const data = useLoaderData()
@@ -54,7 +58,7 @@ const UpdateTutorial = () => {
             qualification,
 
         }
-        axios.put(`http://localhost:5000/tutor/${_id}`, updatedTutorial)
+        axios.put(`https://tutor-lagbe-server.vercel.app/tutor/${_id}`, updatedTutorial)
             .then(res => {
                 // console.log(res.data);
                 if (res.data.matchedCount > 0) {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
 import Banner2 from '../components/Banner2';
 import Stats from '../components/Stats';
@@ -6,6 +6,10 @@ import { Link, useLoaderData } from 'react-router-dom';
 import TuitionTypes from '../components/TuitionTypes';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = 'Home | TutorLagbe?'
+  }, [])
+  
   const data = useLoaderData()
   const [categories, setCategories] = useState(data)
   // console.log(categories);

@@ -9,6 +9,10 @@ import { motion } from 'framer-motion';
 
 
 const FindTutors = () => {
+    useEffect(() => {
+        document.title = 'FindTutor | TutorLagbe?'
+    }, [])
+
     const data = useLoaderData()
     // const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate()
@@ -20,7 +24,7 @@ const FindTutors = () => {
 
 
     const handleSearch = () => {
-        fetch(`http://localhost:5000/tutorials?searchParams=${searchTerm}`)
+        fetch(`https://tutor-lagbe-server.vercel.app/tutorials?searchParams=${searchTerm}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

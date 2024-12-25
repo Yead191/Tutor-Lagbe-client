@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import toast from 'react-hot-toast';
@@ -14,6 +14,9 @@ import axios from 'axios';
 
 
 const Login = () => {
+    useEffect(() => {
+        document.title = 'Login | TutorLagbe?'
+      }, [])
 
     const { login } = useAuth()
     const [showPass, setShowPass] = useState(false)
@@ -34,9 +37,9 @@ const Login = () => {
                 toast.success(`Logged In as: ${result.user.displayName}`)
                 // navigate(from)
                 const user = { email: result.user.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://tutor-lagbe-server.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data.data);
+                        // console.log(data.data);
                         navigate(from)
                     })
             })

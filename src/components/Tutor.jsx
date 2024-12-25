@@ -15,12 +15,12 @@ const Tutor = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/tutors-count')
+        axios.get('https://tutor-lagbe-server.vercel.app/tutors-count')
             .then(res => setTutorCount(res.data))
     }, [])
     const { tutorCount } = tutorCounter
 
-    console.log(tutorCounter);
+    // console.log(tutorCounter);
 
 
     const itemsPerPage = 9;
@@ -45,10 +45,10 @@ const Tutor = () => {
     // const pages = [...Array(numberOfPages).keys()]
 
 
-    console.log(pages);
+    // console.log(pages);
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:5000/tutorials?page=${currentPage}&size=${itemsPerPage}`)
+        axios.get(`https://tutor-lagbe-server.vercel.app/tutorials?page=${currentPage}&size=${itemsPerPage}`)
             .then(res => {
                 setTutorials(res.data)
                 setLoading(false)

@@ -17,15 +17,15 @@ const Stats = () => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:5000/review-count')
+        axios.get('https://tutor-lagbe-server.vercel.app/review-count')
             .then(res => setReview(res.data))
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:5000/tutors-count')
+        axios.get('https://tutor-lagbe-server.vercel.app/tutors-count')
             .then(res => setTutorCount(res.data))
     }, [])
     useEffect(() => {
-        axios.get('http://localhost:5000/users-count')
+        axios.get('https://tutor-lagbe-server.vercel.app/users-count')
             .then(res => {
                 setUserCounter(res.data)
             })

@@ -11,7 +11,7 @@ const TutorCard = ({ tutor }) => {
     const [isBooked, setIsBooked] = useState(false)
     // console.log(isBooked);
     useEffect(() => {
-        axios.get('http://localhost:5000/bookedTutors')
+        axios.get('https://tutor-lagbe-server.vercel.app/bookedTutors')
             .then(res => {
                 // console.log(res.data)
                 const data = res.data

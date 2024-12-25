@@ -16,7 +16,7 @@ const SocialLogin = () => {
             .then(result => {
                 navigate(from)
                 const user = { email: result.user.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://tutor-lagbe-server.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
                         // console.log(data);
                     })
@@ -26,7 +26,7 @@ const SocialLogin = () => {
                     email: result.user.email,
                     createdAt: result?.user?.metadata?.creationTime,
                 }
-                axios.post('http://localhost:5000/users', newUser)
+                axios.post('https://tutor-lagbe-server.vercel.app/users', newUser)
                     .then(result => {
                         // console.log(result);
                     })

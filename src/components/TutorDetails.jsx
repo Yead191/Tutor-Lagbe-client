@@ -9,6 +9,9 @@ import { RxCross1 } from 'react-icons/rx';
 
 
 const TutorDetails = () => {
+    useEffect(() => {
+        document.title = 'Details | TutorLagbe?'
+    }, [])
     const { user } = useAuth()
     const tutor = useLoaderData()
     const [isBooked, setIsBooked] = useState(false)
@@ -19,7 +22,7 @@ const TutorDetails = () => {
     // console.log(isBooked);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/bookedTutors')
+        axios.get('https://tutor-lagbe-server.vercel.app/bookedTutors')
             .then(res => {
                 // console.log(res.data)
                 const data = res.data
@@ -69,7 +72,7 @@ const TutorDetails = () => {
             price,
         }
         // console.log(bookedTutor);
-        axios.post('http://localhost:5000/bookedTutors', bookedTutor)
+        axios.post('https://tutor-lagbe-server.vercel.app/bookedTutors', bookedTutor)
             .then(res => {
                 // console.log(res)
                 if (res.status === 200) {
@@ -90,7 +93,7 @@ const TutorDetails = () => {
         const reviewData = {
             tutorId: id, reviewedBy: user.email, reviewedAt: new Date()
         }
-        axios.post('http://localhost:5000/reviews', reviewData)
+        axios.post('https://tutor-lagbe-server.vercel.app/reviews', reviewData)
             .then(res => {
                 // console.log(res.status)
                 if (res.status === 200) {

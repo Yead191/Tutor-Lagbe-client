@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from "motion/react"
 import { Link, useLocation, useNavigate, } from 'react-router-dom';
 // import { AuthContext } from '../provider/AuthProvider';
@@ -13,6 +13,10 @@ import axios from 'axios';
 
 
 const Register = () => {
+    useEffect(() => {
+        document.title = 'Register | TutorLagbe?'
+      }, [])
+
     const { createUser, updateUser, setUser, setLoading } = useAuth()
     const [showPass, setShowPass] = useState(false)
     const [errorMsg, setErrorMsg] = useState('')
@@ -53,14 +57,14 @@ const Register = () => {
         }
         createUser(email, password)
             .then(res => {
-                console.log(res.user);
+                // console.log(res.user);
                 setUser(res.user)
                 // const createdAt = result?.user?.metadata?.creationTime
 
                 const user = { email: res.user.email }
-                axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
+                axios.post('https://tutor-lagbe-server.vercel.app/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                     })
                 updateUser({
                     displayName: name,
@@ -74,7 +78,7 @@ const Register = () => {
                             email: res.user.email,
                             createdAt: res?.user?.metadata?.creationTime,
                         }
-                        axios.post('http://localhost:5000/users', newUser)
+                        axios.post('https://tutor-lagbe-server.vercel.app/users', newUser)
                             .then(res => {
                                 // console.log(res);
                             })

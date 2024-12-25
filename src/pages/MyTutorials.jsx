@@ -9,13 +9,16 @@ import UseAxios from '../hooks/UseAxios';
 
 
 const MyTutorials = () => {
+    useEffect(() => {
+        document.title = 'MyTutorials | TutorLagbe?'
+    }, [])
     const navigate = useNavigate()
     const { user } = useAuth()
     const [myTutorials, setMyTutorials] = useState([])
     const axiosSecure = UseAxios()
 
     useEffect(() => {
-        // axios.get(`http://localhost:5000/my-tutorials?email=${user.email}`, { withCredentials: true })
+        // axios.get(`https://tutor-lagbe-server.vercel.app/my-tutorials?email=${user.email}`, { withCredentials: true })
         //     .then(res => setMyTutorials(res.data))
         axiosSecure.get(`/my-tutorials?email=${user.email}`)
             .then(res => {
@@ -36,7 +39,7 @@ const MyTutorials = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/tutor/${id}`)
+                axios.delete(`https://tutor-lagbe-server.vercel.app/tutor/${id}`)
                     .then(res => {
                         // console.log(res.data);
                         if (res.data.deletedCount > 0) {

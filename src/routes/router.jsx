@@ -32,23 +32,23 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
-        loader: () => fetch('http://localhost:5000/categories')
+        loader: () => fetch('https://tutor-lagbe-server.vercel.app/categories')
       },
       {
         path: '/find-tutors',
         element: <FindTutors></FindTutors>,
-        loader: () => fetch('http://localhost:5000/categories'),
+        loader: () => fetch('https://tutor-lagbe-server.vercel.app/categories'),
         children: [
           {
             index: true,
             element: <Tutor></Tutor>,
-            loader: () => fetch('http://localhost:5000/tutorials'),
+            loader: () => fetch('https://tutor-lagbe-server.vercel.app/tutorials'),
           },
           {
-            path: 'category/:category', // Use relative path here
+            path: 'category/:category', 
             element: <TutorsByCategories></TutorsByCategories>,
             loader: ({ params }) =>
-              fetch(`http://localhost:5000/tutorials/${params.category}`),
+              fetch(`https://tutor-lagbe-server.vercel.app/tutorials/${params.category}`),
           },
 
         ],
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
       {
         path: '/tutor/:details',
         element: <PrivateRoute><TutorDetails></TutorDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/tutor/${params.details}`)
+        loader: ({ params }) => fetch(`https://tutor-lagbe-server.vercel.app/tutor/${params.details}`)
       },
       {
         path: '/my-booked-tutor',
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
       {
         path: '/update-tutorial/:id',
         element: <PrivateRoute><UpdateTutorial></UpdateTutorial> </PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/tutor/${params.id}`)
+        loader: ({ params }) => fetch(`https://tutor-lagbe-server.vercel.app/tutor/${params.id}`)
       },
     ]
   },

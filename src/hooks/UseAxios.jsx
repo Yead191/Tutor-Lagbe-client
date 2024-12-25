@@ -6,7 +6,7 @@ import useAuth from './UseAuth';
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://tutor-lagbe-server.vercel.app',
     withCredentials: true
 })
 const UseAxios = () => {

@@ -10,11 +10,14 @@ import { FaArrowRight, FaSearch } from 'react-icons/fa';
 
 
 const MyBookedTutor = () => {
+    useEffect(() => {
+        document.title = 'MyBookedTutor | TutorLagbe?'
+    }, [])
     const { user } = useAuth()
     const [bookedTutor, setBookedTutor] = useState()
     const axiosSecure = UseAxios()
     useEffect(() => {
-        // axios.get(`http://localhost:5000/my-booked-tutors?email=${user?.email}`, {withCredentials: true})
+        // axios.get(`https://tutor-lagbe-server.vercel.app/my-booked-tutors?email=${user?.email}`, {withCredentials: true})
         //     .then(res => setBookedTutor(res.data))
         axiosSecure.get(`/my-booked-tutors?email=${user?.email}`)
             .then(res => setBookedTutor(res.data))

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import useAuth from '../hooks/UseAuth';
 import axios from 'axios';
@@ -6,6 +6,10 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
 const AddTutorials = () => {
+    useEffect(() => {
+        document.title = 'AddTutorial | TutorLagbe?'
+    }, [])
+
     const { user } = useAuth()
     const navigate = useNavigate()
 
@@ -30,10 +34,10 @@ const AddTutorials = () => {
         };
 
 
-        console.log(tutorialData);
-        axios.post('http://localhost:5000/tutorials', tutorialData)
+        // console.log(tutorialData);
+        axios.post('https://tutor-lagbe-server.vercel.app/tutorials', tutorialData)
             .then((res) => {
-                console.log("Response from server:", res)
+                // console.log("Response from server:", res)
                 if (res.status === 200) {
 
                     Swal.fire({
