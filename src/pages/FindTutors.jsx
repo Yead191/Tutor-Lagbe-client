@@ -10,6 +10,7 @@ const FindTutors = () => {
     const data = useLoaderData()
     // const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate()
+    
 
     const { setSearch, searchTerm, setSearchTerm } = useAuth()
 
@@ -20,7 +21,7 @@ const FindTutors = () => {
         fetch(`http://localhost:5000/tutorials?searchParams=${searchTerm}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setSearch(data)
                 navigate('/find-tutors')
 

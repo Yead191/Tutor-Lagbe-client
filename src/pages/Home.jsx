@@ -6,7 +6,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const Home = () => {
   const categories = useLoaderData()
-  console.log(categories);
+  // console.log(categories);
   return (
     <div>
       <Banner></Banner>

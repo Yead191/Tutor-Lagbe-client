@@ -10,7 +10,7 @@ const Banner2 = () => {
     return (
         <div className='mb-16 bg-transparent'>
             <h1 className='text-4xl font-semibold text-center leading-10 mb-2'>SEARCH TUTORING JOBS</h1>
-            <p className='text-[#66789c] leading-5 text-2xl text-center'>Find Your Tuition Jobs, in your Country</p>
+            <p className='text-[#66789c] leading-5 text-2xl text-center'>Find Your Tuition Jobs, Around The Globe</p>
 
             <div className='flex flex-col md:flex-row items-center justify-center mt-12  md:w-10/12 mx-auto'>
                 <motion.div

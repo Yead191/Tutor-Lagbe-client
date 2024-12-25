@@ -4,8 +4,14 @@ import TutorCard from '../components/TuitorCard';
 import useAuth from '../hooks/UseAuth';
 const Tutor = () => {
     const data = useLoaderData()
-    const { search } = useAuth()
+    const { search, setSearch } = useAuth()
     const [tutorials, setTutorials] = useState(data)
+    
+    useEffect(() => {
+        setSearch(data)
+
+
+    }, [])
 
     useEffect(() => {
         setTutorials(search)
