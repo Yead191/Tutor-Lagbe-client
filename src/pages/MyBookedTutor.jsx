@@ -3,7 +3,7 @@ import useAuth from '../hooks/UseAuth';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import bgImage from '../assets/bg-find.png';
-import { FaArrowRight, FaSearch } from 'react-icons/fa';
+import { FaArrowRight, FaSearch, FaStar } from 'react-icons/fa';
 import UseAxios from '../hooks/UseAxios';
 
 const MyBookedTutor = () => {
@@ -75,7 +75,10 @@ const MyBookedTutor = () => {
                                             <span className="font-medium ">Living Location:</span> {tutor?.country}
                                         </p>
                                         <p className="text-sm flex-grow ">
-                                            <span className="font-medium ">Review:</span> {tutor?.review}
+                                            <span className="font-medium ">Salary:</span> {tutor?.price}
+                                        </p>
+                                        <p className="text-sm flex-grow flex  items-center">
+                                            <span className="font-medium ">Review:</span> <FaStar className='mx-1 text-yellow-400' />  {tutor?.review}
                                         </p>
                                     </div>
                                     <Link to={`/tutor/${tutor.tutorId}`} className='btn btn-sm mt-2 bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#540654] text-white '>Details</Link>

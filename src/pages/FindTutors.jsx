@@ -65,7 +65,7 @@ const FindTutors = () => {
                     initial={{ x: '-50vh', opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 2, ease: 'easeInOut' }}
-                    className='lg:col-span-3 xl:col-span-2 flex flex-col gap-3 md:sticky md:top-20 md:h-[calc(100vh-32px)] overflow-auto '>
+                    className='lg:col-span-3 xl:col-span-2 flex flex-col gap-3 md:sticky md:top-20 md:h-[calc(100vh-32px)] overflow-auto  mb-8 md:mb-0'>
                     {
                         data?.map(category => <NavLink to={`/find-tutors/category/${category.language}`}
                             key={category.id}

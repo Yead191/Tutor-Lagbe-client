@@ -203,7 +203,7 @@ const TutorDetails = () => {
                             </tr>
                             <tr>
                                 <td className='w-1/3 font-bold text-md'>I Speak</td>
-                                <td className='w-2/3 flex flex-row gap-2'>
+                                <td className='w-2/3 flex flex-col md:flex-row gap-2'>
                                     {languageProficiency && languageProficiency?.map((lang, index) => (
                                         <p key={index} className="badge badge-accent">
                                             {lang}

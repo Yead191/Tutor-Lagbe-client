@@ -56,8 +56,8 @@ const Navbar = () => {
         }} className="navbar bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#00d4ff] shadow-md fixed top-0 z-50 lg:px-20 ">
 
 
-            <div className='navbar-start'>
-                <div className="drawer lg:hidden">
+            <div className='navbar-start gap-7 md:gap-0'>
+                <div className="drawer lg:hidden mr-6">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
 
@@ -174,7 +174,7 @@ const Navbar = () => {
                     </div>
                 </div>
 
-                <Link to={'/'} className='text-white text-2xl lg:text-3xl font-semibold' >
+                <Link to={'/'} className='text-white text-2xl lg:text-3xl font-semibold pl-3 lg:pl-0' >
                     TutorLagbe?
                 </Link>
             </div>
