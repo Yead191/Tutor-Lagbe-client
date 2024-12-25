@@ -3,6 +3,7 @@ import Banner from '../components/Banner';
 import Banner2 from '../components/Banner2';
 import Stats from '../components/Stats';
 import { Link, useLoaderData } from 'react-router-dom';
+import TuitionTypes from '../components/TuitionTypes';
 
 const Home = () => {
   const categories = useLoaderData()
@@ -34,6 +35,8 @@ const Home = () => {
           }
         </div>
       </div>
+
+      <TuitionTypes></TuitionTypes>
     </div>
   );
 };

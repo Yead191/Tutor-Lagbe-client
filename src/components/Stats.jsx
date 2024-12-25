@@ -27,7 +27,7 @@ const Stats = () => {
     // console.log(tutorCount);
 
     return (
-        <section className="py-12 bg-gray-50 mb-12">
+        <section className="py-12 bg-gray-100 mb-12">
             <div className="md:max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center md:space-x-12">
                 {/* Stat 1 */}
                 <div className="text-center">
