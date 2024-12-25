@@ -5,15 +5,22 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaEdit, FaFile, FaStar } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import { motion } from 'framer-motion';
+import UseAxios from '../hooks/UseAxios';
 
 
 const MyTutorials = () => {
     const navigate = useNavigate()
     const { user } = useAuth()
     const [myTutorials, setMyTutorials] = useState([])
+    const axiosSecure = UseAxios()
+
     useEffect(() => {
-        axios.get(`http://localhost:5000/my-tutorials?email=${user.email}`, { withCredentials: true })
-            .then(res => setMyTutorials(res.data))
+        // axios.get(`http://localhost:5000/my-tutorials?email=${user.email}`, { withCredentials: true })
+        //     .then(res => setMyTutorials(res.data))
+        axiosSecure.get(`/my-tutorials?email=${user.email}`)
+            .then(res => {
+                setMyTutorials(res.data)
+            })
     }, [])
     // console.log(myTutorials);
 

@@ -5,14 +5,20 @@ import { motion } from 'framer-motion';
 import bgImage from '../assets/bg-find.png';
 import { Link } from 'react-router-dom';
 import blueBg from '../assets/blue-bg2.jpg'
+import UseAxios from '../hooks/UseAxios';
 
 
 const MyBookedTutor = () => {
     const { user } = useAuth()
     const [bookedTutor, setBookedTutor] = useState()
+    const axiosSecure = UseAxios()
     useEffect(() => {
-        axios.get(`http://localhost:5000/my-booked-tutors?email=${user?.email}`, {withCredentials: true})
+        // axios.get(`http://localhost:5000/my-booked-tutors?email=${user?.email}`, {withCredentials: true})
+        //     .then(res => setBookedTutor(res.data))
+        axiosSecure.get(`/my-booked-tutors?email=${user?.email}`)
             .then(res => setBookedTutor(res.data))
+
+
     }, [])
     // const bookedTutor = useLoaderData()
     return (
