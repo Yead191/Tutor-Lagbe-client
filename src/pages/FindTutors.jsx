@@ -40,7 +40,7 @@ const FindTutors = () => {
                 <div className="join flex justify-center mt-8 mb-16">
                     <div>
                         <input
-                            className="input input-bordered join-item min-w-96"
+                            className="input input-bordered join-item md:min-w-96"
                             placeholder="Search By Language"
                             defaultValue={searchTerm}
                             value={searchTerm}
@@ -56,7 +56,7 @@ const FindTutors = () => {
             </div>
 
 
-            <div className='grid lg:grid-cols-12 gap-8 xl:w-11/12 mx-auto py-12'>
+            <div className='grid lg:grid-cols-12 gap-8 xl:w-11/12 mx-auto py-12 px-3 md:px-0'>
                 <motion.aside
                     initial={{ x: '-50vh', opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}

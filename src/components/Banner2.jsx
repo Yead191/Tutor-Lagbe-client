@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 const Banner2 = () => {
     return (
-        <div className='mb-16 bg-transparent'>
+        <div className='mb-16 bg-transparent mt-8 md:mt-2 p-4 md:p-0'>
             <h1 className='text-4xl font-semibold text-center leading-10 mb-2'>SEARCH TUTORING JOBS</h1>
             <p className='text-[#66789c] leading-5 text-2xl text-center'>Find Your Tuition Jobs, Around The Globe</p>
 
@@ -24,7 +24,7 @@ const Banner2 = () => {
                     <p className='xl:w-[600px] text-center text-gray-500'>If teaching jobs interests you, then you are on the right place. TutorLagbe?, we often have 500+ open home tuition jobs that are genuine and 100% verified. Whether you are starting your career as a tuition teacher or an expert in your field, we can help you find your next big tuition job. You can search and apply to the tuition jobs that best fit your skills, favorable location, class and subjects.</p>
                     <div className='place-items-center'>
 
-                        <Link to={'find-tutors'}
+                        <Link to={'/find-tutors'}
                             className="text-white my-6 px-6 py-3 rounded-none shadow-lg flex items-center gap-2"
                             style={{
                                 background: 'linear-gradient(-30deg, #6c2a8c 50%, #a71678 50%)',

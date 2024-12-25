@@ -17,7 +17,7 @@ const Banner = () => {
                 minHeight: '90vh',
             }}
         >
-            <div className="flex flex-col lg:flex-row items-center justify-center lg:w-10/12 xl:w-8/12 mx-auto">
+            <div className="flex flex-col lg:flex-row items-center justify-center lg:w-10/12 xl:w-8/12 mx-auto p-4 md:p-0">
                 {/* Left Section */}
                 <div className="flex-1 pt-12">
                     <motion.div

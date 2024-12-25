@@ -16,7 +16,7 @@ const Home = () => {
       <div>
         <Stats></Stats>
       </div>
-      <div>
+      <div className='p-4 md:p-0'>
         <h1 className='text-4xl font-semibold text-center leading-10 mb-2'>Find You Language Specialist</h1>
         <p className='text-[#66789c] leading-5 text-2xl text-center'>Find Our Specialist to reach your dream goal</p>
         <div className='my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:w-10/12 mx-auto'>

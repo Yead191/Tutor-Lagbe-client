@@ -28,8 +28,16 @@ const Navbar = () => {
         <li><NavLink to='/' >Home</NavLink></li>
         <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
         <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
-        <li><NavLink to={`/my-booked-tutor`}>My Booked Tutors</NavLink></li>
-        <li><NavLink to={`/my-tutorials`}>My Tutorials</NavLink></li>
+        {
+            user?.email &&
+            <li><NavLink to={`/my-booked-tutor`}>My Booked Tutors</NavLink></li>
+
+        }
+        {
+            user?.email &&
+
+            <li><NavLink to={`/my-tutorials`}>My Tutorials</NavLink></li>
+        }
 
 
     </div >
@@ -109,7 +117,7 @@ const Navbar = () => {
 
                             {/* Menu Items */}
                             <ul className="menu">
-                                <li className='text-lg font-light'>
+                                <li className='text-md'>
                                     <NavLink
                                         to="/"
                                         onClick={() => (document.getElementById("my-drawer-2").checked = false)}
@@ -117,33 +125,42 @@ const Navbar = () => {
                                         Home
                                     </NavLink>
                                 </li>
-                                <li className='text-lg font-light'>
+                                <li className='text-md'>
                                     <NavLink
-                                        to="/allEquipment"
+                                        to="/find-tutors"
                                         onClick={() => (document.getElementById("my-drawer-2").checked = false)}
                                     >
-                                        All Products
+                                        Find Tutors
                                     </NavLink>
                                 </li>
-                                <li className='text-lg font-light'>
+                                <li className='text-md'>
                                     <NavLink
-                                        to="/addEquipment"
+                                        to="/add-tutorials"
                                         onClick={() => (document.getElementById("my-drawer-2").checked = false)}
                                     >
-                                        Add Product
+                                        Add Tutorials
                                     </NavLink>
                                 </li>
+
                                 {
                                     user && user.email &&
-                                    <li className='text-lg font-light'>
+                                    <li className='text-md'>
                                         <NavLink
-                                            to="/myEquipments"
+                                            to="/my-booked-tutor"
                                             onClick={() => (document.getElementById("my-drawer-2").checked = false)}
                                         >
-                                            My Products
+                                            My Booked Tutors
                                         </NavLink>
                                     </li>
                                 }
+                                <li className='text-md'>
+                                    <NavLink
+                                        to="/my-tutorials"
+                                        onClick={() => (document.getElementById("my-drawer-2").checked = false)}
+                                    >
+                                        My Tutorials
+                                    </NavLink>
+                                </li>
 
                             </ul>
                             {
