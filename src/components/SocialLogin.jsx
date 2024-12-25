@@ -18,9 +18,18 @@ const SocialLogin = () => {
                 const user = { email: result.user.email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                     })
                 toast.success(`Logged in as: ${result.user.displayName}`)
+                const newUser = {
+                    name: result.user.displayName,
+                    email: result.user.email,
+                    createdAt: result?.user?.metadata?.creationTime,
+                }
+                axios.post('http://localhost:5000/users', newUser)
+                    .then(result => {
+                        // console.log(result);
+                    })
             })
             .catch(error => {
                 toast.error(error.message);

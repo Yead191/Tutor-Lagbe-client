@@ -13,6 +13,7 @@ const Stats = () => {
     const { tutorCounter, setTutorCount } = useAuth()
     // const [tutorCounter, setTutorCount] = useState({})
     const [review, setReview] = useState({})
+    const [userCounter, setUserCounter] = useState({})
 
 
     useEffect(() => {
@@ -23,8 +24,17 @@ const Stats = () => {
         axios.get('http://localhost:5000/tutors-count')
             .then(res => setTutorCount(res.data))
     }, [])
+    useEffect(() => {
+        axios.get('http://localhost:5000/users-count')
+            .then(res => {
+                setUserCounter(res.data)
+            })
+    }, [])
+
+
     const { tutorCount } = tutorCounter
     const { reviewCount } = review
+    const { userCount } = userCounter
     // console.log(tutorCount);
 
     return (
@@ -69,7 +79,7 @@ const Stats = () => {
                 <div className="text-center">
                     <div ref={refUniversities}>
                         <h2 className="text-4xl font-bold text-gray-800">
-                            {universitiesInView ? <CountUp start={0} end={300} duration={3} /> : 0}+
+                            {universitiesInView ? <CountUp start={0} end={userCount} duration={3} /> : 0}+
                         </h2>
                     </div>
                     <p className="text-[#AE2323] text-lg mt-2">Total Users</p>

@@ -56,6 +56,7 @@ const Register = () => {
                 console.log(res.user);
                 setUser(res.user)
                 // const createdAt = result?.user?.metadata?.creationTime
+
                 const user = { email: res.user.email }
                 axios.post('http://localhost:5000/jwt', user, { withCredentials: true })
                     .then(data => {
@@ -68,6 +69,15 @@ const Register = () => {
                     .then(() => {
                         navigate(location?.state ? location.state : '/')
                         toast.success(`Successfully Registered as: ${res.user.displayName}`)
+                        const newUser = {
+                            name: res.user.displayName,
+                            email: res.user.email,
+                            createdAt: res?.user?.metadata?.creationTime,
+                        }
+                        axios.post('http://localhost:5000/users', newUser)
+                            .then(res => {
+                                // console.log(res);
+                            })
                         setLoading(false)
 
                     })
