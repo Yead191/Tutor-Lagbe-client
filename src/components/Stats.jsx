@@ -3,14 +3,15 @@ import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import axios from 'axios';
+import useAuth from '../hooks/UseAuth';
 
 const Stats = () => {
     const [refCourses, coursesInView] = useInView({ triggerOnce: true });
     const [refCountries, countriesInView] = useInView({ triggerOnce: true });
     const [refUniversities, universitiesInView] = useInView({ triggerOnce: true });
 
-
-    const [tutorCounter, setTutorCount] = useState({})
+    const { tutorCounter, setTutorCount } = useAuth()
+    // const [tutorCounter, setTutorCount] = useState({})
     const [review, setReview] = useState({})
 
 
@@ -23,7 +24,7 @@ const Stats = () => {
             .then(res => setTutorCount(res.data))
     }, [])
     const { tutorCount } = tutorCounter
-    const {reviewCount} = review
+    const { reviewCount } = review
     // console.log(tutorCount);
 
     return (
@@ -71,7 +72,7 @@ const Stats = () => {
                             {universitiesInView ? <CountUp start={0} end={300} duration={3} /> : 0}+
                         </h2>
                     </div>
-                    <p className="text-[#AE2323] text-lg mt-2">Affiliated Universities</p>
+                    <p className="text-[#AE2323] text-lg mt-2">Total Users</p>
                 </div>
             </div>
         </section>
