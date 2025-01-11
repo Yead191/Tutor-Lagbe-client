@@ -16,6 +16,8 @@ import UpdateTutorial from "../components/UpdateTutorial";
 import Tutor from "../components/Tutor";
 import TutorsByCategories from "../components/TutorsByCategories";
 import ScrollToTop from "../components/ScrollToTop";
+import About from "../pages/About";
+import ContactUs from "../pages/ContactUs";
 
 
 const router = createBrowserRouter([
@@ -45,7 +47,7 @@ const router = createBrowserRouter([
             loader: () => fetch('https://tutor-lagbe-server.vercel.app/tutorials'),
           },
           {
-            path: 'category/:category', 
+            path: 'category/:category',
             element: <TutorsByCategories></TutorsByCategories>,
             loader: ({ params }) =>
               fetch(`https://tutor-lagbe-server.vercel.app/tutorials/${params.category}`),
@@ -68,7 +70,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/tutor/:details',
-        element: <PrivateRoute><TutorDetails></TutorDetails></PrivateRoute>,
+        element: <TutorDetails></TutorDetails>,
         loader: ({ params }) => fetch(`https://tutor-lagbe-server.vercel.app/tutor/${params.details}`)
       },
       {
@@ -83,6 +85,14 @@ const router = createBrowserRouter([
         path: '/update-tutorial/:id',
         element: <PrivateRoute><UpdateTutorial></UpdateTutorial> </PrivateRoute>,
         loader: ({ params }) => fetch(`https://tutor-lagbe-server.vercel.app/tutor/${params.id}`)
+      },
+      {
+        path: '/about',
+        element: <About></About>,
+      },
+      {
+        path: '/contact',
+        element: <ContactUs></ContactUs>,
       },
     ]
   },

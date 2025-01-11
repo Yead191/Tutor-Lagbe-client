@@ -10,10 +10,10 @@ const Footer = () => {
                     <img className='w-72 ' src={logo} alt="" />
                     <p>
                         Tutor Lagbe Ltd.
+
+
                         <br />
-                        Providing reliable tech since 2020
-                        <br />
-                        A Company by Yead
+                        A Demo Project made by Yead
                     </p>
                 </aside>
                 <nav>
@@ -30,12 +30,7 @@ const Footer = () => {
                     <a className="link link-hover">Jobs</a>
                     <a className="link link-hover">Press kit</a>
                 </nav>
-                <nav>
-                    <h6 className="footer-title">Legal</h6>
-                    <a className="link link-hover">Terms of use</a>
-                    <a className="link link-hover">Privacy policy</a>
-                    <a className="link link-hover">Cookie policy</a>
-                </nav>
+                
                 <nav>
                     <h6 className="footer-title">Social</h6>
                     <div className="grid grid-flow-col gap-4">
@@ -77,7 +72,7 @@ const Footer = () => {
             </footer>
             <footer className="footer footer-center bg-base-300 text-base-content p-4">
                 <aside>
-                    <p>Copyright © {new Date().getFullYear()} - This Project Owned By Yead.</p>
+                    <p>Copyright © {new Date().getFullYear()} - This Project is Owned By Yead.</p>
                 </aside>
             </footer>
         </div>

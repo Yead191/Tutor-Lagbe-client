@@ -27,7 +27,11 @@ const Navbar = () => {
     const links = <div className='lg:flex lg:gap-3 '>
         <li><NavLink to='/' >Home</NavLink></li>
         <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
-        <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
+        {
+            user?.email &&
+            <li><NavLink to={'add-tutorials'}>Add Tutorials</NavLink></li>
+
+        }
         {
             user?.email &&
             <li><NavLink to={`/my-booked-tutor`}>My Booked Tutors</NavLink></li>
@@ -38,6 +42,9 @@ const Navbar = () => {
 
             <li><NavLink to={`/my-tutorials`}>My Tutorials</NavLink></li>
         }
+        <li><NavLink to={'/about'}>About Us</NavLink></li>
+        <li><NavLink to={'/contact'}>Contact Us</NavLink></li>
+
 
 
     </div >
@@ -133,14 +140,18 @@ const Navbar = () => {
                                         Find Tutors
                                     </NavLink>
                                 </li>
-                                <li className='text-md'>
-                                    <NavLink
-                                        to="/add-tutorials"
-                                        onClick={() => (document.getElementById("my-drawer-2").checked = false)}
-                                    >
-                                        Add Tutorials
-                                    </NavLink>
-                                </li>
+                                {
+                                    user && user.email &&
+
+                                    <li className='text-md'>
+                                        <NavLink
+                                            to="/add-tutorials"
+                                            onClick={() => (document.getElementById("my-drawer-2").checked = false)}
+                                        >
+                                            Add Tutorials
+                                        </NavLink>
+                                    </li>
+                                }
 
                                 {
                                     user && user.email &&
@@ -153,12 +164,31 @@ const Navbar = () => {
                                         </NavLink>
                                     </li>
                                 }
+                                {
+                                    user &&
+                                    <li className='text-md'>
+                                        <NavLink
+                                            to="/my-tutorials"
+                                            onClick={() => (document.getElementById("my-drawer-2").checked = false)}
+                                        >
+                                            My Tutorials
+                                        </NavLink>
+                                    </li>
+                                }
                                 <li className='text-md'>
                                     <NavLink
-                                        to="/my-tutorials"
+                                        to="/about"
                                         onClick={() => (document.getElementById("my-drawer-2").checked = false)}
                                     >
-                                        My Tutorials
+                                        About Us
+                                    </NavLink>
+                                </li>
+                                <li className='text-md'>
+                                    <NavLink
+                                        to="/contact"
+                                        onClick={() => (document.getElementById("my-drawer-2").checked = false)}
+                                    >
+                                        Contact Us
                                     </NavLink>
                                 </li>
 

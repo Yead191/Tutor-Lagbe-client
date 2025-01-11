@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import useAuth from '../hooks/UseAuth';
@@ -9,6 +9,7 @@ import { RxCross1 } from 'react-icons/rx';
 
 
 const TutorDetails = () => {
+    const location = useLocation()
     useEffect(() => {
         document.title = 'Details | TutorLagbe?'
     }, [])
@@ -16,25 +17,35 @@ const TutorDetails = () => {
     const tutor = useLoaderData()
     const [isBooked, setIsBooked] = useState(false)
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false);
+    // const [isDisabled, setDisable] = useState(false)
 
 
 
     // console.log(isBooked);
 
     useEffect(() => {
-        axios.get('https://tutor-lagbe-server.vercel.app/bookedTutors')
+        setLoading(true)
+        // axios.get(`http://localhost:5000/booked-tutors?userEmail=${user.email}&tutorId=${_id}`)
+        axios.get(`https://tutor-lagbe-server.vercel.app/bookedTutors?userEmail=${user?.email}&tutorId=${_id}`)
             .then(res => {
                 // console.log(res.data)
                 const data = res.data
                 for (const book of data) {
                     // console.log(book.email);
                     if (book.email === user.email && _id === book.tutorId) {
-                        setIsBooked(true)
+                        setIsBooked(true);
+                        break;
                     }
 
                 }
+                setLoading(false)
+
 
             })
+            .catch(() => {
+                setLoading(false);
+            });
 
     }, [user])
 
@@ -60,65 +71,85 @@ const TutorDetails = () => {
         } = tutor
     // console.log(tutor.review);
     const isDisabled = email === user?.email
+    // if (user && email === user?.email) {
+    //     setDisable(true)
+    // }
 
     const handleBookTutor = (id) => {
         // console.log(id);
-        const bookedTutor = {
-            tutorId: _id,
-            image: photo,
-            language,
-            tutorEmail: email,
-            email: user?.email,
-            price,
-        }
-        // console.log(bookedTutor);
-        axios.post('https://tutor-lagbe-server.vercel.app/bookedTutors', bookedTutor)
-            .then(res => {
-                // console.log(res)
-                if (res.status === 200) {
+        if (user && user.email) {
+            const bookedTutor = {
+                tutorId: _id,
+                image: photo,
+                language,
+                tutorEmail: email,
+                email: user?.email,
+                price,
+            }
+            // console.log(bookedTutor);
+            axios.post('https://tutor-lagbe-server.vercel.app/bookedTutors', bookedTutor)
+                .then(res => {
+                    // console.log(res)
+                    if (res.status === 200) {
 
-                    Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: "Your have successfully booked this Tutor!",
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    navigate('/my-booked-tutor')
-                }
-            })
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Your have successfully booked this Tutor!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/my-booked-tutor')
+                    }
+                })
+        }
+        else {
+            navigate('/login', { state: location.pathname })
+        }
     }
 
     const handleReview = (id) => {
-        const reviewData = {
-            tutorId: id, reviewedBy: user.email, reviewedAt: new Date()
-        }
-        axios.post('https://tutor-lagbe-server.vercel.app/reviews', reviewData)
-            .then(res => {
-                // console.log(res.status)
-                if (res.status === 200) {
+        if (user && user.email) {
+            const reviewData = {
+                tutorId: id, reviewedBy: user.email, reviewedAt: new Date()
+            }
+            axios.post('https://tutor-lagbe-server.vercel.app/reviews', reviewData)
+                .then(res => {
+                    // console.log(res.status)
+                    if (res.status === 200) {
 
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Thanks For the Review!",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate(`/tutor/${id}`)
+                    }
+
+
+                })
+                .catch((error) => {
+                    console.error("Error posting review:", error);
                     Swal.fire({
                         position: "center",
-                        icon: "success",
-                        title: "Thanks For the Review!",
-                        showConfirmButton: false,
-                        timer: 1500
+                        icon: "error",
+                        title: "Unable to submit the review. You can review a tutor only Once.",
+                        showConfirmButton: true,
                     });
-                    navigate(`/tutor/${id}`)
-                }
-
-
-            })
-            .catch((error) => {
-                console.error("Error posting review:", error);
-                Swal.fire({
-                    position: "center",
-                    icon: "error",
-                    title: "Unable to submit the review. You can review a tutor only Once.",
-                    showConfirmButton: true,
                 });
-            });
+        }
+        else {
+            navigate('/login', { state: location.pathname })
+
+        }
+
+    }
+    if (loading) {
+        return <div className="flex justify-center items-center min-h-screen">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+        </div>
 
     }
 
@@ -178,49 +209,54 @@ const TutorDetails = () => {
                 </div>
                 <div className='md:w-3/4  '>
                     <h1 className='text-center underline font-thin text-2xl my-6'>Tuition Info</h1>
-                    <table className="table">
-                        <tbody>
-
-                            <tr className='border-t'>
-                                <td className='w-1/3 font-bold text-md'>Expected Minimum Salary</td>
-                                <td className='w-2/3 font-semibold text-xl'>{price} <span className='text-xs'>tk/mo</span></td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Current Status for Tuition</td>
-                                <td className='w-2/3 text-green-500 font-bold'>{status}</td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Teaches</td>
-                                <td className='w-2/3 text-[#540654] text-lg font-bold'>{language} Lessons</td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Days Per Week</td>
-                                <td className='w-2/3 font-semibold'>{days} Day/Week</td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Tutoring Experience</td>
-                                <td className='w-2/3 font-bold'>{experience} Years</td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>I Speak</td>
-                                <td className='w-2/3 flex flex-col md:flex-row gap-2'>
-                                    {languageProficiency && languageProficiency?.map((lang, index) => (
-                                        <p key={index} className="badge badge-accent">
-                                            {lang}
-                                        </p>
-                                    ))}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Description</td>
-                                <td className='w-2/3 '>{description}</td>
-                            </tr>
-                            <tr>
-                                <td className='w-1/3 font-bold text-md'>Tutor Email</td>
-                                <td className='w-2/3 '>{email}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    {loading ? (
+                        <div className="flex justify-center items-center w-full h-40">
+                            <div className="w-12 h-12 border-4 border-[#540654] border-dashed rounded-full animate-spin"></div>
+                        </div>
+                    ) : (
+                        <table className="table">
+                            <tbody>
+                                <tr className='border-t'>
+                                    <td className='w-1/3 font-bold text-md'>Expected Minimum Salary</td>
+                                    <td className='w-2/3 font-semibold text-xl'>{price} <span className='text-xs'>tk/mo</span></td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Current Status for Tuition</td>
+                                    <td className='w-2/3 text-green-500 font-bold'>{status}</td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Teaches</td>
+                                    <td className='w-2/3 text-[#540654] text-lg font-bold'>{language} Lessons</td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Days Per Week</td>
+                                    <td className='w-2/3 font-semibold'>{days} Day/Week</td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Tutoring Experience</td>
+                                    <td className='w-2/3 font-bold'>{experience} Years</td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>I Speak</td>
+                                    <td className='w-2/3 flex flex-col md:flex-row gap-2'>
+                                        {languageProficiency && languageProficiency?.map((lang, index) => (
+                                            <p key={index} className="badge badge-accent">
+                                                {lang}
+                                            </p>
+                                        ))}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Description</td>
+                                    <td className='w-2/3 '>{description}</td>
+                                </tr>
+                                <tr>
+                                    <td className='w-1/3 font-bold text-md'>Tutor Email</td>
+                                    <td className='w-2/3 '>{email}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    )}
                     {
                         isBooked ?
                             <button onClick={() => handleReview(_id)} className={`btn  mt-5 w-full ${isDisabled ? 'bg-base-200' : 'bg-[#00d4ff] '}  `} >Review This Tutor</button>

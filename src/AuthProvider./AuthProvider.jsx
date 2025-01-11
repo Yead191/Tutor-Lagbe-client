@@ -11,6 +11,8 @@ const AuthProvider = ({ children }) => {
     const [search, setSearch] = useState()
     const [searchTerm, setSearchTerm] = useState('');
     const [tutorCounter, setTutorCount] = useState({})
+    const [userCounter, setUserCounter] = useState({})
+
 
 
 
@@ -69,6 +71,7 @@ const AuthProvider = ({ children }) => {
         search,
         searchTerm, setSearchTerm,
         tutorCounter, setTutorCount,
+        userCounter, setUserCounter,
         
 
 

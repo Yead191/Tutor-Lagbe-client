@@ -12,9 +12,9 @@ const Banner = () => {
                 backgroundImage: `url(${bannerBg})`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover',
-                backgroundPosition: 'right',
+                backgroundPosition: 'bottom',
                 width: '100%',
-                minHeight: '90vh',
+                minHeight: '80vh',
             }}
         >
             <div className="flex flex-col lg:flex-row items-center justify-center lg:w-10/12 xl:w-8/12 mx-auto p-4 md:p-0">

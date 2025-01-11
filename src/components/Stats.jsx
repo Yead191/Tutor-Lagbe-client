@@ -10,10 +10,9 @@ const Stats = () => {
     const [refCountries, countriesInView] = useInView({ triggerOnce: true });
     const [refUniversities, universitiesInView] = useInView({ triggerOnce: true });
 
-    const { tutorCounter, setTutorCount } = useAuth()
+    const { tutorCounter, setTutorCount, userCounter, setUserCounter} = useAuth()
     // const [tutorCounter, setTutorCount] = useState({})
     const [review, setReview] = useState({})
-    const [userCounter, setUserCounter] = useState({})
 
 
     useEffect(() => {
@@ -25,9 +24,11 @@ const Stats = () => {
             .then(res => setTutorCount(res.data))
     }, [])
     useEffect(() => {
+
         axios.get('https://tutor-lagbe-server.vercel.app/users-count')
             .then(res => {
                 setUserCounter(res.data)
+
             })
     }, [])
 
@@ -38,12 +39,12 @@ const Stats = () => {
     // console.log(tutorCount);
 
     return (
-        <section className="py-12 bg-gray-100 mb-12">
+        <section className="py-12 bg-base-200 mb-12">
             <div className="md:max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center md:space-x-12">
                 {/* Stat 1 */}
                 <div className="text-center">
                     <div ref={refCourses}>
-                        <h2 className="text-4xl font-bold text-gray-800">
+                        <h2 className="text-4xl font-bold ">
                             {coursesInView ? <CountUp start={0} end={tutorCount && tutorCount} duration={3} separator="," /> : 0}+
                         </h2>
                     </div>
@@ -55,7 +56,7 @@ const Stats = () => {
                 {/* Stat 2 */}
                 <div className="text-center">
                     <div ref={refCountries}>
-                        <h2 className="text-4xl font-bold text-gray-800">
+                        <h2 className="text-4xl font-bold ">
                             {countriesInView ? <CountUp start={0} end={reviewCount} duration={3} /> : 0}+
                         </h2>
                     </div>
@@ -67,7 +68,7 @@ const Stats = () => {
                 {/* Stat 3 */}
                 <div className="text-center">
                     <div ref={refUniversities}>
-                        <h2 className="text-4xl font-bold text-gray-800">
+                        <h2 className="text-4xl font-bold ">
                             {universitiesInView ? <CountUp start={0} end={8} duration={3} /> : 0}+
                         </h2>
                     </div>
@@ -78,7 +79,7 @@ const Stats = () => {
                 {/* Stat 3 */}
                 <div className="text-center">
                     <div ref={refUniversities}>
-                        <h2 className="text-4xl font-bold text-gray-800">
+                        <h2 className="text-4xl font-bold ">
                             {universitiesInView ? <CountUp start={0} end={userCount} duration={3} /> : 0}+
                         </h2>
                     </div>

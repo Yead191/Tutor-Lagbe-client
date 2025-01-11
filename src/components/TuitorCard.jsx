@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import useAuth from '../hooks/UseAuth';
 import { FaStar } from 'react-icons/fa';
+import { motion } from 'framer-motion'
 
 
 const TutorCard = ({ tutor }) => {
@@ -28,7 +29,15 @@ const TutorCard = ({ tutor }) => {
     }, [user])
 
     return (
-        <div className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative transition transform lg:hover:-translate-y-2 lg:duration-500 lg:ease-in-out ">
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+                duration: 0.1,
+                ease: "easeIn",
+            }}
+
+            className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative transition duration-1000">
             {/* Profile Picture */}
             <div className="flex-shrink-0 absolute -top-10 left-2">
                 <img
@@ -69,11 +78,11 @@ const TutorCard = ({ tutor }) => {
                 <p className="text-sm ">
                     <span className="font-medium">Living Location:</span> {tutor.country}
                 </p>
-                <Link to={`/tutor/${tutor._id}`} className='btn btn-sm mt-2 bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#540654] text-white'>Details</Link>
+                <Link to={`/tutor/${tutor._id}`} className='btn btn-sm mt-2 bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#540654] text-white transition hover:scale-110 duration-500'>Details</Link>
             </div>
 
 
-        </div>
+        </motion.div>
     );
 };
 
