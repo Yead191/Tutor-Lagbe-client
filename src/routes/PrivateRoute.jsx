@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import Loading from '../components/Loading';
 import useAuth from '../hooks/UseAuth';
+import toast from 'react-hot-toast';
 
 const PrivateRoute = ({ children }) => {
     const location = useLocation()
@@ -19,9 +20,12 @@ const PrivateRoute = ({ children }) => {
 
     }
 
+    toast.error('Please Login to Continue!')
+
 
     return (
-        <Navigate state={location.pathname} to={'/login'}></Navigate>
+        <Navigate state={location.pathname} to={'/login'}>
+        </Navigate>
     );
 };
 
