@@ -57,8 +57,8 @@ const TuitionTypes = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{
-                            duration: 0.1,
-                            ease: "easeIn",
+                            duration: 1,
+
                         }}
                         className="bg-base-100 shadow-2xl hover:border hover:border-[#800080] rounded-lg p-6 text-center transition transform hover:-translate-y-2 duration-500 ease-linear">
                         <img

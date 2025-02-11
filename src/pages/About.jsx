@@ -77,7 +77,10 @@ const About = () => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center">
-                    <Link to={'/contact'} className="btn bg-[#2d248a] text-white">Contact Us</Link>
+                    <Link to={'/contact'} className="text-white my-6 px-6 py-3  rounded-none shadow-lg flex items-center gap-2"
+                    style={{
+                        background: 'linear-gradient(-30deg, #6c2a8c 50%, #a71678 50%)',
+                    }}>Contact Us</Link>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import { Fade } from "react-awesome-reveal";
 
 export default function ContactUs() {
     useEffect(() => {
-        document.title = 'Contact | EquipMart';
+        document.title = 'Contact | TutorLagbe';
     }, []);
     const [formData, setFormData] = useState({
         name: "",

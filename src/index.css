@@ -10,6 +10,6 @@ body {
 
   a.active{
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     background: linear-gradient(-30deg, #6c2a8c 50%, #540654 50%);
   }

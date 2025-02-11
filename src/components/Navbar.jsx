@@ -24,7 +24,7 @@ const Navbar = () => {
     }
 
 
-    const links = <div className='lg:flex lg:gap-3 '>
+    const links = <div className='lg:flex '>
         <li><NavLink to='/' >Home</NavLink></li>
         <li><NavLink to={'/find-tutors'}>Find Tutors</NavLink></li>
         {
@@ -60,7 +60,7 @@ const Navbar = () => {
     return (
         <div style={{
             background: "linear-gradient(90deg, #540654, #cc0d85 50%, #540654 100%, #00d4ff 0)"
-        }} className="navbar bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#00d4ff] shadow-md fixed top-0 z-50 lg:px-20 ">
+        }} className="navbar bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#00d4ff] shadow-md fixed top-0 z-50 xl:px-20 lg:px-16 ">
 
 
             <div className='navbar-start gap-7 md:gap-0'>

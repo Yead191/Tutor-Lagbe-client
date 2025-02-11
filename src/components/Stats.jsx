@@ -64,7 +64,6 @@ const Stats = () => {
                 </div>
 
                 <div className="h-12 w-px bg-[#AE2323] hidden md:block"></div>
-
                 {/* Stat 3 */}
                 <div className="text-center">
                     <div ref={refUniversities}>

@@ -33,11 +33,11 @@ const TutorCard = ({ tutor }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{
-                duration: 0.1,
-                ease: "easeIn",
+                duration: 1,
+                
             }}
 
-            className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative transition duration-1000">
+            className="bg-base-100 p-5 rounded-lg shadow-lg flex items-start relative ">
             {/* Profile Picture */}
             <div className="flex-shrink-0 absolute -top-10 left-2">
                 <img
