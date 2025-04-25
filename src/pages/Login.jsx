@@ -14,11 +14,19 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login | TutorLagbe?";
   }, []);
-
+  // states for email & password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login } = useAuth();
   const [showPass, setShowPass] = useState(false);
   const location = useLocation();
   // console.log(location, 'location');
+
+  // default credentials
+  const handleBadgeClick = (emailValue, passwordValue) => {
+    setEmail(emailValue);
+    setPassword(passwordValue);
+  };
 
   const navigate = useNavigate();
   const from = location.state || "/";
@@ -31,7 +39,7 @@ const Login = () => {
       .then(async (result) => {
         // console.log(result.user);
         form.reset();
-        toast.success(`Logged In as: ${result.user.displayName}`);
+        // toast.success(`Logged In as: ${result.user.displayName}`);
         // navigate(from)
         const user = { email: result.user.email };
 
@@ -51,6 +59,7 @@ const Login = () => {
         toast.error(error.message);
       });
   };
+  //   console.log(password, email);
 
   return (
     <motion.div
@@ -64,10 +73,27 @@ const Login = () => {
         <div className="p-8 lg:w-1/2 flex flex-col justify-center items-center">
           <h2 className="text-3xl font-bold mb-4 text-gray-800">Sign In</h2>
           <SocialLogin></SocialLogin>
+          {/* Default Credentials */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 0.1 }}
+            className="flex gap-3 justify-center items-center flex-wrap mb-4 "
+            viewport={{ once: true }}
+          >
+            <span
+              className="badge bg-gradient-to-r from-[#540654] via-[#cc0d85] to-[#540654] text-white text-xs badge-lg cursor-pointer"
+              onClick={() => handleBadgeClick("user@tutor.com", "Tutor123@456")}
+            >
+              Default User
+            </span>
+          </motion.div>
           <form onSubmit={handleSignIn} className="w-full">
             <input
               name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               className="block w-full mb-4 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
               required
@@ -78,6 +104,8 @@ const Login = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-400"
                 placeholder="Password"
                 name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
               <button
