@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 
 const TuitionTypes = () => {
     return (
-        <section className="bg-base-200 my-12  py-12 px-4 md:px-0">
+        <section className="bg-base-200  py-12 px-4 md:px-0">
             <div className="max-w-7xl mx-auto text-center">
                 <h2 className="text-3xl lg:text-4xl leading-10 font-semibold text-gray-800">Tuition Types</h2>
                 <p className="text-gray-600 text-2xl leading-8 my-3">Find the Best Tuition Type which suits you most</p>

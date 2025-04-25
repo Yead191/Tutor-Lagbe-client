@@ -5,6 +5,7 @@ import Stats from '../components/Stats';
 import { Link, useLoaderData } from 'react-router-dom';
 import TuitionTypes from '../components/TuitionTypes';
 import TestimonialSection from '../components/Testimonials';
+import CallToAction from '../components/CallToAction';
 
 const Home = () => {
   useEffect(() => {
@@ -42,7 +43,9 @@ const Home = () => {
         </div>
       </div>
 
+
       <TuitionTypes></TuitionTypes>
+      <CallToAction />
       <TestimonialSection />
     </div>
   );
