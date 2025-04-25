@@ -1,57 +1,56 @@
-
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Ayesha Rahman",
     avatar:
-      "https://ui-avatars.com/api/?name=Sarah+Johnson&background=EDFAFA&color=0D9488&size=80",
-    role: "Medical Student",
+      "https://ui-avatars.com/api/?name=Ayesha+Rahman&background=EDFAFA&color=0D9488&size=80",
+    role: "University Student",
     language: "Spanish",
     rating: 5,
-    text: "This platform transformed my language learning journey! In just 3 months, I've gained enough confidence to hold basic conversations in Spanish. The tutors are professional and the scheduling is super flexible.",
+    text: "Tutor Lagbe? made learning Spanish so easy! In just a few months, I went from beginner to confidently speaking with my tutor. The platform’s flexibility fits perfectly with my busy uni schedule.",
   },
   {
     id: 2,
-    name: "Michael Chen",
+    name: "Rahul Das",
     avatar:
-      "https://ui-avatars.com/api/?name=Michael+Chen&background=E0F2FE&color=0369A1&size=80",
-    role: "Software Engineer",
+      "https://ui-avatars.com/api/?name=Rahul+Das&background=E0F2FE&color=0369A1&size=80",
+    role: "Software Developer",
     language: "Japanese",
-    rating: 5,
-    text: "I've tried many language apps, but nothing compares to having a dedicated tutor. The platform is intuitive, and I love how I can book sessions that fit my busy schedule. My Japanese has improved dramatically!",
+    rating: 4,
+    text: "I’ve tried apps, but nothing beats the personalized lessons from Tutor Lagbe?. The tutors are amazing, and I can schedule sessions around my work hours. My Japanese is improving fast!",
   },
   {
     id: 3,
-    name: "Priya Patel",
+    name: "Fatima Khan",
     avatar:
-      "https://ui-avatars.com/api/?name=Priya+Patel&background=FCE7F3&color=DB2777&size=80",
-    role: "Business Analyst",
+      "https://ui-avatars.com/api/?name=Fatima+Khan&background=FCE7F3&color=DB2777&size=80",
+    role: "Marketing Professional",
     language: "French",
-    rating: 4,
-    text: "The quality of tutors on this platform is exceptional. I needed to learn French for a job opportunity, and within weeks I was able to pass my language proficiency test. Highly recommend!",
+    rating: 5,
+    text: "Thanks to Tutor Lagbe?, I learned French in time for a big client meeting. The tutors are professional, and the platform is so user-friendly. I’m thrilled with my progress!",
   },
   {
     id: 4,
-    name: "David Wilson",
+    name: "Arjun Sharma",
     avatar:
-      "https://ui-avatars.com/api/?name=David+Wilson&background=EFF6FF&color=2563EB&size=80",
+      "https://ui-avatars.com/api/?name=Arjun+Sharma&background=EFF6FF&color=2563EB&size=80",
     role: "High School Student",
     language: "Mandarin",
     rating: 5,
-    text: "Learning Mandarin seemed impossible until I found this platform. The tutors make learning fun and engaging. The ability to book recurring sessions has helped me maintain consistency in my studies.",
+    text: "Tutor Lagbe? turned Mandarin from intimidating to fun! My tutor makes every session engaging, and the recurring booking feature keeps me on track with my studies.",
   },
   {
     id: 5,
-    name: "Emma Rodriguez",
+    name: "Sofia Ahmed",
     avatar:
-      "https://ui-avatars.com/api/?name=Emma+Rodriguez&background=FEF3C7&color=D97706&size=80",
-    role: "Travel Blogger",
+      "https://ui-avatars.com/api/?name=Sofia+Ahmed&background=FEF3C7&color=D97706&size=80",
+    role: "Freelance Writer",
     language: "Italian",
-    rating: 5,
-    text: "As someone who travels frequently, being able to take online lessons from anywhere has been a game-changer. The tutors are native speakers and have helped me learn practical Italian I can use in real-life situations!",
+    rating: 4,
+    text: "As a freelancer, I love how Tutor Lagbe? lets me learn Italian from anywhere. The native tutors teach practical phrases I can use on my travels. Highly recommend this platform!",
   },
 ];
 
