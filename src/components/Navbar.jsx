@@ -35,8 +35,8 @@ const Navbar = () => {
       </li>
       {user?.email && (
         <li className="dropdown dropdown-hover">
-          <div tabIndex={0} role="button" className="">
-            Services <ChevronDown />
+          <div tabIndex={0} role="button" className="flex items-start">
+            Services <ChevronDown size={20} />
           </div>
           <ul
             tabIndex={0}

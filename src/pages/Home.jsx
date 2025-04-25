@@ -4,6 +4,7 @@ import Banner2 from '../components/Banner2';
 import Stats from '../components/Stats';
 import { Link, useLoaderData } from 'react-router-dom';
 import TuitionTypes from '../components/TuitionTypes';
+import TestimonialSection from '../components/Testimonials';
 
 const Home = () => {
   useEffect(() => {
@@ -42,6 +43,7 @@ const Home = () => {
       </div>
 
       <TuitionTypes></TuitionTypes>
+      <TestimonialSection />
     </div>
   );
 };
