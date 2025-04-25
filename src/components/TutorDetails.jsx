@@ -6,6 +6,7 @@ import useAuth from '../hooks/UseAuth';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { RxCross1 } from 'react-icons/rx';
+import toast from 'react-hot-toast';
 
 
 const TutorDetails = () => {
@@ -91,14 +92,7 @@ const TutorDetails = () => {
                 .then(res => {
                     // console.log(res)
                     if (res.status === 200) {
-
-                        Swal.fire({
-                            position: "center",
-                            icon: "success",
-                            title: "Your have successfully booked this Tutor!",
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                        toast.success('Successfully booked tutor!')
                         navigate('/my-booked-tutor')
                     }
                 })
