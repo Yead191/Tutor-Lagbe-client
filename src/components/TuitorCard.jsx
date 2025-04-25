@@ -43,7 +43,7 @@ const TutorCard = ({ tutor }) => {
                 <img
                     src={tutor.photo}
                     alt={tutor.name}
-                    className="w-16 h-16 rounded-full border-4 border-transparent shadow-md"
+                    className="w-16 h-16 rounded-full border-4 border-transparent object-cover shadow-md"
                 />
             </div>
 
